@@ -20,38 +20,41 @@ public class Calculator{
 		Stack vals = new Stack<Double>(); // for numbers
 		Stack ops = new Stack<String>(); // for operations
 		Scanner sc = new Scanner(input); // for reading input
-		
-		while(sc.hasNext()){
-			String s = sc.next();
-			
-			// left parenthesis: do nothing
-			if(s.equals("(")){
-			}
-			// pushes operations to Stack ops
-			else if(s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/") || s.equals("^")){
-				ops.push(s);
-			}
-			// right parentheses: do the latest operation to the latest two numbers
-			else if(s.equals(")")){
-				String op = ops.pop().toString();
-				double v2 = Double.parseDouble(vals.pop().toString()); // to avoid the Object can't become a Double thing...
-				double v1 = Double.parseDouble(vals.pop().toString());
+		try{
+			while(sc.hasNext()){
+				String s = sc.next();
 				
-				if(op.equals("+"))
-					vals.push(v1 + v2);
-				else if (op.equals("-"))
-					vals.push(v1 - v2);
-				else if (op.equals("*"))
-					vals.push(v1 * v2);
-				else if (op.equals("/"))
-					vals.push(v1 / v2);
-				else if (op.equals("^"))
-					vals.push(Math.pow(v1, v2));
+				// left parenthesis: do nothing
+				if(s.equals("(")){
+				}
+				// pushes operations to Stack ops
+				else if(s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/") || s.equals("^")){
+					ops.push(s);
+				}
+				// right parentheses: do the latest operation to the latest two numbers
+				else if(s.equals(")")){
+					String op = ops.pop().toString();
+					double v2 = Double.parseDouble(vals.pop().toString()); // to avoid the Object can't become a Double thing...
+					double v1 = Double.parseDouble(vals.pop().toString());
+					
+					if(op.equals("+"))
+						vals.push(v1 + v2);
+					else if (op.equals("-"))
+						vals.push(v1 - v2);
+					else if (op.equals("*"))
+						vals.push(v1 * v2);
+					else if (op.equals("/"))
+						vals.push(v1 / v2);
+					else if (op.equals("^"))
+						vals.push(Math.pow(v1, v2));
+				}
+				// pushes numbers to Stack vals
+				else{
+					vals.push(Double.valueOf(s));
+				}
 			}
-			// pushes numbers to Stack vals
-			else{
-				vals.push(Double.valueOf(s));
-			}
+		} catch(Exception e){
+			throw new IllegalArgumentException("Your equation is not formatted correctly. Please use parentheses around all operation pairs, e.g. (1 + 2) and only use the characters ()+-*/^ 0123456789.");
 		}
 		return Double.valueOf(vals.pop().toString());
 	}
