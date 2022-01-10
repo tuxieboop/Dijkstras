@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 /**
 * Evaluates a mathematical expression consisting of integers and the operations +, -, *, /, and ^.
 */
