@@ -1,8 +1,21 @@
 import java.util.Scanner;
 
+/**
+* Evaluates a mathematical expression consisting of integers and the operations +, -, *, /, and ^.
+*/
 public class Calculator{
+	/**
+	* Constructor for a Calculator.
+	*/
+	public Calculator(){
+	}
 	
-	public static double Calculate(String input){
+	/**
+	* Evaluates a mathematical expression.
+	* @param input the mathematical expression
+	* @return the result
+	*/
+	public static double evaluate(String input){
 		input = formatEquation(input);
 		Stack vals = new Stack<Double>();
 		Stack ops = new Stack<String>();
@@ -40,6 +53,11 @@ public class Calculator{
 		return Double.parseDouble(vals.pop().toString());
 	}
 	
+	/**
+	* Formats an equation so that a scanner can read it (numbers/operations/parentheses are each separated by a space) in evaluate().
+	* @param input the raw equation
+	* @return the formatted equation.
+	*/
 	private static String formatEquation(String input){
 		String result = "";
 		
@@ -67,10 +85,14 @@ public class Calculator{
 		return result;
 	}
 	
+	/**
+	* Takes an inputted equation and evaluates it using Calculator.
+	*/
 	public static void main(String[] args){
 		System.out.println("\nPlease enter your equation.\n");
 		Scanner scan = new Scanner(System.in);
 		String input = scan.nextLine(); // ((((90/30)-17)+((4*6)/2))+(8^2)) <-62
-		System.out.println(Calculator.evaluate(input));
+		Calculator c = new Calculator();
+		System.out.println(c.evaluate(input));
 	}
 }
