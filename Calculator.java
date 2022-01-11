@@ -16,11 +16,11 @@ public class Calculator{
 	* @return the result
 	*/
 	public static double evaluate(String input){
-		input = formatEquation(input); // formats the input to be read by a scanner
 		Stack vals = new Stack<Double>(); // for numbers
 		Stack ops = new Stack<String>(); // for operations
-		Scanner sc = new Scanner(input); // for reading input
 		try{
+			input = formatEquation(input); // formats the input to be read by a scanner
+			Scanner sc = new Scanner(input); // for reading input
 			while(sc.hasNext()){
 				String s = sc.next();
 				
